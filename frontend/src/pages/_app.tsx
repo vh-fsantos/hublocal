@@ -1,14 +1,25 @@
-import '../styles/globals.css'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
-import { Provider } from 'react-redux'
-import type { AppProps } from 'next/app'
-
-import store from '../store'
+import store  from '../store';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  const publicRoutes = ['/', '/register'];
+  const isPublicRoute = publicRoutes.includes(router.pathname);
+  const isAuthenticated = true;
+
+  if (!isAuthenticated && !isPublicRoute) {
+    router.push('/login');
+    return null;
+  }
+
   return (
     <Provider store={store}>
-      <Component {...pageProps} />
+        <Component {...pageProps} />
     </Provider>
-  )
+  );
 }

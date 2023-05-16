@@ -8,9 +8,13 @@ export class CompanyService {
     constructor(@InjectRepository(Company) private companyRepository: Repository<Company>) {}
 
     async findAll(): Promise<Company[]> {
-        let companies = await this.companyRepository.createQueryBuilder('company')
-                                                    .leftJoinAndSelect('company.user', 'user')
-                                                    .getMany();
+
+
+        let companies = await this.companyRepository.find({relations: ['user']})
+
+        // let companies = await this.companyRepository.createQueryBuilder('company')
+        //                                             .leftJoinAndSelect('company.user', 'user')
+        //                                             .getMany();
         return companies;
     }
 

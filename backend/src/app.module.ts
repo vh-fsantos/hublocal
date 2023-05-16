@@ -11,6 +11,9 @@ import { AuthController } from './controllers/auth.controller';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
+import { PlaceController } from './controllers/place.controller';
+import { PlaceService } from './services/place.service';
+import { Place } from './entities/place.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import { JwtStrategy } from './jwt.strategy';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, Company]),
+    TypeOrmModule.forFeature([User, Company, Place]),
     PassportModule.register({
       defaultStrategy: 'jwt',
       property: 'user',
@@ -35,7 +38,7 @@ import { JwtStrategy } from './jwt.strategy';
       signOptions: { expiresIn: '60s' }
     })
   ],
-  controllers: [UserController, CompanyController, AuthController],
-  providers: [UserService, CompanyService, AuthService, JwtStrategy],
+  controllers: [UserController, CompanyController, PlaceController, AuthController],
+  providers: [UserService, CompanyService, PlaceService, AuthService, JwtStrategy],
 })
 export class AppModule {}

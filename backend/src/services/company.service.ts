@@ -28,9 +28,9 @@ export class CompanyService {
         await this.companyRepository.delete(id);
     }
 
-    async update(id: number, newCompnay: Company) : Promise<Company> {
+    async update(id: number, newCompany: Company) : Promise<Company> {
         const company = await this.findById(id);
-        const updatedCompany = Object.assign(company, newCompnay);
+        const updatedCompany = Object.assign(company, newCompany);
         return await this.companyRepository.save(updatedCompany);
     }
 }

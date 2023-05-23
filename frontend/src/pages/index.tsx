@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "../components/LoginForm";
 import Head from "next/head";
 import Presentation from "../components/Presentation";
-import MyComponent from "../components/MyComponent";
+import { Box } from "@mui/material";
 
 const Home = () => {
   return (
@@ -10,9 +10,10 @@ const Home = () => {
         <Head>
             <title>Hub Local - Login</title>
         </Head>
-        <Presentation/>
-        <LoginForm />
-        <MyComponent />
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '100dvh'}}>
+          <Presentation/>
+          <LoginForm />
+        </Box>
     </>
   );
 };

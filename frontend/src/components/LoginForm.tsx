@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/authActions';
 import { useState } from 'react';
+import { Button, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -24,8 +26,8 @@ function LoginForm() {
         <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </label>
       <br />
-      <button type="submit">Login</button>
-    </form>
+      <Button type="submit" color="secondary">Login</Button>
+    </form> 
   );
 }
 

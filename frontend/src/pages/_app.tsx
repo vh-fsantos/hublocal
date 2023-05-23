@@ -4,6 +4,9 @@ import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import store  from '../store';
+import { ThemeProvider } from '@mui/material';
+import theme from '../theme';
+import '../styles/global.css';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -19,7 +22,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
+      </ThemeProvider>
     </Provider>
   );
 }
